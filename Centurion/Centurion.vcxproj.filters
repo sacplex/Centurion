@@ -19,6 +19,11 @@
     <ClInclude Include="src\Centurion\Log.h">
       <Filter>Centurion</Filter>
     </ClInclude>
+    <ClInclude Include="src\Centurion\Events\ApplicationEvent.h" />
+    <ClInclude Include="src\Centurion\Events\Event.h" />
+    <ClInclude Include="src\Centurion\Events\KeyEvent.h" />
+    <ClInclude Include="src\Centurion\Events\Mouse.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">
@@ -27,5 +32,11 @@
     <ClCompile Include="src\Centurion\Log.cpp">
       <Filter>Centurion</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Centurion.aps" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Centurion.rc" />
   </ItemGroup>
 </Project>
