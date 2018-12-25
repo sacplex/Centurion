@@ -4,7 +4,7 @@
 	#ifdef CTN_BUILD_DLL
 		#define CENTURION_API __declspec(dllexport)
 	#else
-		#define CENTURION_API __declspec(dllexport)
+		#define CENTURION_API __declspec(dllimport)
 	#endif // !CTN_BUILD_DLL
 #else
 	#error Centurion only support Windows!

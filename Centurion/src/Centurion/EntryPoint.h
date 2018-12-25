@@ -6,7 +6,9 @@ extern Centurion::Application* Centurion::CreateApplication();
 
 int main(int argc, char** argv)
 {
-	printf("Welcome to the Centurion Engine");
+	Centurion::Log::Init();
+	CTN_CLIENT_INFO("Welcome to the Centurion Engine");
+
 	auto app = Centurion::CreateApplication();
 	app->Run();
 	delete app;

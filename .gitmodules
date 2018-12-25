@@ -1,0 +1,3 @@
+[submodule "Centurion/vendor/spdlog"]
+	path = Centurion/vendor/spdlog
+	url = https://github.com/gabime/spdlog

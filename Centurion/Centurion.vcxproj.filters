@@ -27,9 +27,15 @@
     <ClInclude Include="src\Centurion\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Centurion\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Centurion\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

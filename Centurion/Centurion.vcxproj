@@ -15,15 +15,17 @@
     <ClInclude Include="src\Centurion\Application.h" />
     <ClInclude Include="src\Centurion\Core.h" />
     <ClInclude Include="src\Centurion\EntryPoint.h" />
+    <ClInclude Include="src\Centurion\Log.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp" />
+    <ClCompile Include="src\Centurion\Log.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{8B7F12ED-7573-4394-ACE6-806AFABFCD56}</ProjectGuid>
     <RootNamespace>Centurion</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -62,6 +64,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>CTN_PLATFORM_WINDOWS;CTN_BUILD_DLL</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Centurion\vendor\spdlog\include;</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
