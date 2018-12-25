@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Centurion {
 	
 	class CENTURION_API MouseMovedEvent : public Event

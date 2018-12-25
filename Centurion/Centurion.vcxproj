@@ -76,7 +76,8 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>ctnpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CTN_PLATFORM_WINDOWS;CTN_BUILD_DLL;CTN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -96,7 +97,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>ctnpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CTN_PLATFORM_WINDOWS;CTN_BUILD_DLL;CTN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -120,7 +122,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>ctnpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>CTN_PLATFORM_WINDOWS;CTN_BUILD_DLL;CTN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -143,7 +146,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="src\Centurion.h" />
     <ClInclude Include="src\Centurion\Application.h" />
     <ClInclude Include="src\Centurion\Core.h" />
@@ -153,16 +155,14 @@
     <ClInclude Include="src\Centurion\Events\KeyEvent.h" />
     <ClInclude Include="src\Centurion\Events\Mouse.h" />
     <ClInclude Include="src\Centurion\Log.h" />
+    <ClInclude Include="src\ctnpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp" />
     <ClCompile Include="src\Centurion\Log.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Centurion.aps" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Centurion.rc" />
+    <ClCompile Include="src\ctnpch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

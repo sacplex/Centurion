@@ -18,6 +18,9 @@ project "Centurion"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "ctnpch.h"
+	pchsource "Centurion/src/ctnpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

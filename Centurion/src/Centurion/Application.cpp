@@ -1,3 +1,4 @@
+#include "ctnpch.h"
 #include "Application.h"
 
 #include "Centurion/Events/ApplicationEvent.h"

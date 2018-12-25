@@ -1,3 +1,4 @@
+#include "ctnpch.h"
 #include "Log.h"
 
 namespace Centurion {
