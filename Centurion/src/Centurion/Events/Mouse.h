@@ -61,8 +61,9 @@ namespace Centurion {
 		int m_Button;
 	};
 
-	class CENTURION_API MouseButtonPressedEvent : publuc MouseButtonEvent
+	class CENTURION_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
+	public:
 		MouseButtonPressedEvent(int button)
 			: MouseButtonEvent(button) {}
 
@@ -76,8 +77,9 @@ namespace Centurion {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class CENTURION_API MouseButtonReleasedEvent : publuc MouseButtonEvent
+	class CENTURION_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
+	public:
 		MouseButtonReleasedEvent(int button)
 			: MouseButtonEvent(button) {}
 
