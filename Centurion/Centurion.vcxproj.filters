@@ -35,6 +35,8 @@
       <Filter>Centurion</Filter>
     </ClInclude>
     <ClInclude Include="src\ctnpch.h" />
+    <ClInclude Include="src\Centurion\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">
@@ -44,5 +46,6 @@
       <Filter>Centurion</Filter>
     </ClCompile>
     <ClCompile Include="src\ctnpch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

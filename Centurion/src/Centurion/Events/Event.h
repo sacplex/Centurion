@@ -1,5 +1,6 @@
 #pragma once
 
+#include "ctnpch.h"
 #include "Centurion/Core.h"
 
 namespace Centurion {

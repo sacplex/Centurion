@@ -8,6 +8,7 @@ namespace Centurion {
 
 	Application::Application()
 	{
+		m_Window = std::unique_ptr<Window>(Window::Create());
 	}
 
 
@@ -17,10 +18,11 @@ namespace Centurion {
 
 	void Application::Run()
 	{
-		WindowResizeEvent e(1280, 720);
-		CTN_CORE_TRACE(e);
 
-		while (true);
+		while (m_Running)
+		{
+			m_Window->OnUpdate();
+		}
 	}
 
 }

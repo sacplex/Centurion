@@ -10,6 +10,12 @@ workspace "Centurion"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Centurion/vendor/GLFW/include"
+
+include "Centurion/vendor/GLFW"
+
 project "Centurion"
 	location "Centurion"
 	kind "SharedLib"
@@ -30,7 +36,14 @@ project "Centurion"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
