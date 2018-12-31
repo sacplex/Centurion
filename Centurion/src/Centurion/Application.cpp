@@ -17,12 +17,34 @@ namespace Centurion {
 	{
 	}
 
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverLay(Layer* layer)
+	{
+		m_LayerStack.PushOverlay(layer);
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose)));
 
 		CTN_CORE_TRACE("{0}", e);
+
+		auto it = m_LayerStack.end();
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			(*--it)->OnEvent(e);
+
+			break;
+
+			if (e.Handled)
+				break;
+		}
 	}
 	
 	void Application::Run()
@@ -30,6 +52,9 @@ namespace Centurion {
 
 		while (m_Running)
 		{
+			for (Layer* layer : m_LayerStack)
+				layer->OnUpdate();
+
 			m_Window->OnUpdate();
 		}
 	}

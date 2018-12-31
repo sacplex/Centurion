@@ -7,6 +7,12 @@
     <Filter Include="Centurion\Events">
       <UniqueIdentifier>{80D61704-6CCF-3656-9501-1CDB81591662}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Centurion.h" />
@@ -31,21 +37,39 @@
     <ClInclude Include="src\Centurion\Events\Mouse.h">
       <Filter>Centurion\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Centurion\Layer.h">
+      <Filter>Centurion</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Centurion\LayerStack.h">
+      <Filter>Centurion</Filter>
+    </ClInclude>
     <ClInclude Include="src\Centurion\Log.h">
       <Filter>Centurion</Filter>
     </ClInclude>
+    <ClInclude Include="src\Centurion\Window.h">
+      <Filter>Centurion</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\ctnpch.h" />
-    <ClInclude Include="src\Centurion\Window.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">
       <Filter>Centurion</Filter>
     </ClCompile>
+    <ClCompile Include="src\Centurion\Layer.cpp">
+      <Filter>Centurion</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Centurion\LayerStack.cpp">
+      <Filter>Centurion</Filter>
+    </ClCompile>
     <ClCompile Include="src\Centurion\Log.cpp">
       <Filter>Centurion</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\ctnpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>
