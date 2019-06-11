@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Centurion/vendor/GLFW/include"
+IncludeDir["Glad"] = "Centurion/vendor/Glad/include"
 
 include "Centurion/vendor/GLFW"
+include "Centurion/vendor/Glad"
 
 project "Centurion"
 	location "Centurion"
@@ -37,12 +39,14 @@ project "Centurion"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -54,7 +58,8 @@ project "Centurion"
 		defines
 		{
 			"CTN_PLATFORM_WINDOWS",
-			"CTN_BUILD_DLL"
+			"CTN_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
