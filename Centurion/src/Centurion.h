@@ -5,6 +5,7 @@
 #include "Centurion/Application.h"
 #include "Centurion/Layer.h"
 #include "Centurion/Log.h"
+#include "Centurion/ImGui/ImGuiLayer.h"
 
 // ---Entry Point ------------------
 #include "Centurion/EntryPoint.h"
