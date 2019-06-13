@@ -2,9 +2,11 @@
 #include "Application.h"
 #include "Log.h"
 
+#include <glad/glad.h>
+
 namespace Centurion {
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1
+#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -13,7 +15,7 @@ namespace Centurion {
 		s_Instance = this;
 
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent)));
+		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 	}
 
 
@@ -36,7 +38,7 @@ namespace Centurion {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose)));
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
 		CTN_CORE_TRACE("{0}", e);
 
@@ -58,6 +60,9 @@ namespace Centurion {
 
 		while (m_Running)
 		{
+			glClearColor(0, 0, 0, 0);
+			glClear(GL_COLOR_BUFFER_BIT);
+
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
 

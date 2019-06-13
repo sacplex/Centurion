@@ -97,7 +97,14 @@ namespace Centurion {
 					break;
 				}
 			}
-		}); 
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
+		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 		{
@@ -155,7 +162,7 @@ namespace Centurion {
 		else
 			glfwSwapInterval(0);
 
-		m_Data.VSync - enabled;
+		m_Data.VSync = enabled;
 	}
 
 	bool WindowsWindow::IsVSync() const
