@@ -161,6 +161,7 @@
     <ClInclude Include="src\Centurion\Events\Event.h" />
     <ClInclude Include="src\Centurion\Events\KeyEvent.h" />
     <ClInclude Include="src\Centurion\Events\Mouse.h" />
+    <ClInclude Include="src\Centurion\Input.h" />
     <ClInclude Include="src\Centurion\Layer.h" />
     <ClInclude Include="src\Centurion\LayerStack.h" />
     <ClInclude Include="src\Centurion\Log.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ctnpch.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\ImGui\ImGuiLayer.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="src\ctnpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
