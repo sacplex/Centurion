@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Centurion/vendor/GLFW/include"
 IncludeDir["Glad"] = "Centurion/vendor/Glad/include"
 IncludeDir["ImGui"] = "Centurion/vendor/imgui"
+IncludeDir["glm"] = "Centurion/vendor/glm"
 
 include "Centurion/vendor/GLFW"
 include "Centurion/vendor/Glad"
@@ -34,7 +35,9 @@ project "Centurion"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -43,7 +46,8 @@ project "Centurion"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -103,7 +107,8 @@ project "Sandbox"
 	includedirs
 	{
 		"Centurion/vendor/spdlog/include",
-		"Centurion/src"
+		"Centurion/src",
+		"%{IncludeDir.glm}"
 	}
 
 	links

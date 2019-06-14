@@ -7,3 +7,6 @@
 [submodule "Centurion/vendor/imgui"]
 	path = Centurion/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Centurion/vendor/glm"]
+	path = Centurion/vendor/glm
+	url = https://github.com/g-truc/glm
