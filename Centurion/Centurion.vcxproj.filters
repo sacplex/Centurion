@@ -63,6 +63,8 @@
     <ClInclude Include="src\Centurion\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Centurion\Input.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Centurion\KeyCodes.h" />
+    <ClInclude Include="src\Centurion\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">

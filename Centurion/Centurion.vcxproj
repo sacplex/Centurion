@@ -162,9 +162,11 @@
     <ClInclude Include="src\Centurion\Events\KeyEvent.h" />
     <ClInclude Include="src\Centurion\Events\Mouse.h" />
     <ClInclude Include="src\Centurion\Input.h" />
+    <ClInclude Include="src\Centurion\KeyCodes.h" />
     <ClInclude Include="src\Centurion\Layer.h" />
     <ClInclude Include="src\Centurion\LayerStack.h" />
     <ClInclude Include="src\Centurion\Log.h" />
+    <ClInclude Include="src\Centurion\MouseButtonCodes.h" />
     <ClInclude Include="src\Centurion\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />

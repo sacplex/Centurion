@@ -9,12 +9,15 @@ public:
 
 	void OnUpdate() override
 	{
-		CTN_CLIENT_INFO("ExampleLayer::Update");
+		//CTN_CLIENT_INFO("ExampleLayer::Update");
+
+		if (Centurion::Input::IsKeyPressed(CTN_KEY_TAB))
+			CTN_CLIENT_INFO("Tab key is pressed!");
 	}
 
 	void OnEvent(Centurion::Event& event) override
 	{
-		CTN_CLIENT_TRACE("{0}", event);
+		//CTN_CLIENT_TRACE("{0}", event);
 	}
 };
 

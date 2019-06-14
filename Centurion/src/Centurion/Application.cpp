@@ -75,7 +75,6 @@ namespace Centurion {
 		}
 	}
 
-
 	bool Application::OnWindowClose(WindowCloseEvent &e)
 	{
 		m_Running = false;
