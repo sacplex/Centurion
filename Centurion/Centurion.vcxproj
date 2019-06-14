@@ -168,7 +168,6 @@
     <ClInclude Include="src\Centurion\Log.h" />
     <ClInclude Include="src\Centurion\MouseButtonCodes.h" />
     <ClInclude Include="src\Centurion\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ctnpch.h" />
@@ -539,11 +538,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp" />
+    <ClCompile Include="src\Centurion\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Centurion\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Centurion\Layer.cpp" />
     <ClCompile Include="src\Centurion\LayerStack.cpp" />
     <ClCompile Include="src\Centurion\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\ctnpch.cpp">
@@ -564,4 +563,4 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-</Project>
+</Project> 

@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "Events/ApplicationEvent.h"
 #include "Events/Event.h"
+#include "ImGui/ImGuiLayer.h"
 #include "LayerStack.h"
 #include "Window.h"
 
@@ -25,6 +26,7 @@ namespace Centurion {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 
 		LayerStack m_LayerStack;

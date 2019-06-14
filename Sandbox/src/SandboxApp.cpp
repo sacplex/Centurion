@@ -27,7 +27,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverLay(new Centurion::ImGuiLayer());
 	}
 
 	~Sandbox()
