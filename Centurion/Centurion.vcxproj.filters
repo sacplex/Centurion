@@ -1193,6 +1193,7 @@
     </ClInclude>
     <ClInclude Include="src\Centurion\Renderer\RendererContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Centurion\Renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">
@@ -1223,5 +1224,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Centurion\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>

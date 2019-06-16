@@ -22,6 +22,11 @@ namespace Centurion
 		glfwMakeContextCurrent(m_WindowHandler);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		CTN_CORE_ASSERT(status, "FAIL to initialise Glad!");
+
+		CTN_CORE_INFO("OpenGL Info:");
+		CTN_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
+		CTN_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
+		CTN_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers()

@@ -5,6 +5,7 @@
 #include "Events/Event.h"
 #include "ImGui/ImGuiLayer.h"
 #include "LayerStack.h"
+#include "Renderer/Shader.h"
 #include "Window.h"
 
 namespace Centurion {
@@ -23,6 +24,8 @@ namespace Centurion {
 		static Application* s_Instance;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
+
 	public:
 		Application();
 		virtual ~Application();
