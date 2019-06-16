@@ -42,9 +42,4 @@ namespace Centurion {
 		if (it != m_Layers.end())
 			m_Layers.erase(it);
 	}
-
-	int LayerStack::Size()
-	{
-		return m_Layers.size();
-	}
 }

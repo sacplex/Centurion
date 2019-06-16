@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef CTN_PLATFORM_WINDOWS
+#if CTN_DYNAMIC_LINK
 	#ifdef CTN_BUILD_DLL
 		#define CENTURION_API __declspec(dllexport)
 	#else
 		#define CENTURION_API __declspec(dllimport)
 	#endif // !CTN_BUILD_DLL
+#else
+	#define CENTURION_API
+#endif
 #else
 	#error Centurion only support Windows!
 #endif // !CTN_PLATFORM_WINDOWS
