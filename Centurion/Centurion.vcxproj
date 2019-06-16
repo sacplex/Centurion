@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Centurion.h" />
     <ClInclude Include="src\Centurion\Application.h" />
     <ClInclude Include="src\Centurion\Core.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\ctnpch.h" />
+    <ClInclude Include="src\Centurion\Renderer\RendererContext.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -528,6 +530,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Centurion\Application.cpp" />
     <ClCompile Include="src\Centurion\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Centurion\ImGui\ImGuiLayer.cpp" />

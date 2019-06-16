@@ -2,12 +2,31 @@
 
 #include "Centurion/Window.h"
 
-#include "GLFW/glfw3.h"
+#include "Centurion/Renderer/RendererContext.h"
+
+#include <GLFW/glfw3.h>
 
 namespace Centurion {
 
 	class WindowsWindow : public Window
 	{
+	private:
+		GLFWwindow* m_Window;
+
+		struct WindowData
+		{
+			std::string Title;
+			unsigned int Width, Height;
+			bool VSync;
+
+			EventCallbackFn EventCallback;
+		};
+
+		WindowData m_Data;
+		RendererContext* m_Context;
+	protected:
+		virtual void Init(const WindowProps& props);
+		virtual void ShutDown();
 	public:
 		WindowsWindow(const WindowProps& props);
 		virtual ~WindowsWindow();
@@ -23,21 +42,5 @@ namespace Centurion {
 		bool IsVSync() const override;
 
 		inline virtual void* GetNativeWindow() const { return m_Window; }
-	protected:
-		virtual void Init(const WindowProps& props);
-		virtual void ShutDown();
-	private:
-		GLFWwindow* m_Window;
-
-		struct WindowData
-		{
-			std::string Title;
-			unsigned int Width, Height;
-			bool VSync;
-
-			EventCallbackFn EventCallback;
-		};
-
-		WindowData m_Data;
 	};
 }
