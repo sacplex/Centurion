@@ -21,6 +21,31 @@ namespace Centurion {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverLay(m_ImGuiLayer);
+
+		glGenVertexArrays(1, &m_VertexArray);
+		glBindVertexArray(m_VertexArray);
+
+		glGenBuffers(1, &m_VertexBuffer);
+		glBindBuffer(GL_ARRAY_BUFFER, m_VertexBuffer);
+			
+		float vertices[3 * 3] = { // Data is in the CPU
+			-0.5, -0.5f, 0.0f,
+			0.5, -0.5f, 0.0f,
+			0.0, 0.5f, 0.0f,
+		};
+
+		// Now, lets move the data to the GPU
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // GL_STATIC_DRAW (Draw once)
+
+		glEnableVertexAttribArray(0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr); // Structure the data
+		
+		glGenBuffers(1, &m_IndexBuffer);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IndexBuffer); // Setup the Order of drawing
+
+		unsigned int indices[3] = { 0, 1, 2 }; // Order of drawing
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 	}
 
 
@@ -67,6 +92,9 @@ namespace Centurion {
 		{
 			glClearColor(0, 0, 0, 0);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			glBindVertexArray(m_VertexArray);
+			glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr); // Draw the indices
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

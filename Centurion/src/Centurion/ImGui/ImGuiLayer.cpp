@@ -29,7 +29,7 @@ namespace Centurion
 		// Setup Dear ImGui contect
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO();
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;	// Enable Keyboard controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;	// Enable Gamepad controls
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;		// Enable Docking
