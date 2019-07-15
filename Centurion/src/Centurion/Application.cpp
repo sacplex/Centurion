@@ -12,7 +12,7 @@ namespace Centurion {
 
 	Application* Application::s_Instance = nullptr;
 
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
+	/*static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
 	{
 		switch (type)
 		{
@@ -31,7 +31,7 @@ namespace Centurion {
 
 		CTN_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;
-	}
+	}*/
 
 	Application::Application()
 	{
@@ -43,8 +43,10 @@ namespace Centurion {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverLay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
+		//glGenVertexArrays(1, &m_VertexArray);
+		//glBindVertexArray(m_VertexArray);
+
+		m_VertexReferenceArray.reset(VertexReferenceArray::Create());
 					
 		float vertices[3 * 7] = { // Data is in the CPU
 			-0.5, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
@@ -65,22 +67,23 @@ namespace Centurion {
 			m_VertexBuffer->SetLayout(layout);
 		}
 
-		uint32_t index = 0;
+		/*uint32_t index = 0;
 
 		
 		for (const auto& element : m_VertexBuffer->GetLayout())
 		{
+			// Structure the data
 			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, m_VertexBuffer->GetLayout().GetStride(), (const void*)element.Offset); // Structure the data
+			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, m_VertexBuffer->GetLayout().GetStride(), (const void*)element.Offset);
 			index++;
-		}
+		}*/
 
-		//glEnableVertexAttribArray(0);
-		//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr); // Structure the data
-				
+		m_VertexReferenceArray->AddVertexBuffer(m_VertexBuffer);
+
 		uint32_t indices[3] = { 0, 1, 2 }; // Order of drawing
 
 		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) /  sizeof(uint32_t)));
+		m_VertexReferenceArray->SetIndexBuffer(m_IndexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -163,7 +166,7 @@ namespace Centurion {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
+			m_VertexReferenceArray->Bind();
 			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr); // Draw the indices
 
 			for (Layer* layer : m_LayerStack)

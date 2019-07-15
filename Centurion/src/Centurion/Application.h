@@ -6,6 +6,7 @@
 #include "ImGui/ImGuiLayer.h"
 #include "LayerStack.h"
 #include "Renderer/Shader.h"
+#include "Renderer/VertexReferenceArray.h"
 #include "Renderer/Buffer.h"
 #include "Window.h"
 
@@ -24,10 +25,10 @@ namespace Centurion {
 
 		static Application* s_Instance;
 
-		unsigned int m_VertexArray;/*, m_VertexBuffer, m_IndexBuffer;*/
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexReferenceArray> m_VertexReferenceArray;
+		std::shared_ptr<VertexBuffer> m_VertexBuffer;
+		std::shared_ptr<IndexBuffer> m_IndexBuffer;
 	public:
 		Application();
 		virtual ~Application();
