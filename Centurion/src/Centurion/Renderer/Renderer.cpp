@@ -5,5 +5,19 @@
 
 namespace Centurion
 {
-	RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL;
+	void Renderer::BeginScene()
+	{
+
+	}
+
+	void Renderer::Submit(const std::shared_ptr<VertexReferenceArray>& vertexReferenceArray)
+	{
+		vertexReferenceArray->Bind();
+		RenderCommand::DrawIndexed(vertexReferenceArray);
+	}
+
+	void Renderer::EndScene()
+	{
+
+	}
 }

@@ -144,7 +144,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Centurion\Renderer\Buffer.h" />
+    <ClInclude Include="src\Centurion\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Centurion\Renderer\Renderer.h" />
+    <ClInclude Include="src\Centurion\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Centurion\Renderer\Shader.h" />
     <ClInclude Include="src\Centurion\Renderer\VertexReferenceArray.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
@@ -165,6 +167,7 @@
     <ClInclude Include="src\Centurion\Log.h" />
     <ClInclude Include="src\Centurion\MouseButtonCodes.h" />
     <ClInclude Include="src\Centurion\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexReferenceArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -536,6 +539,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Centurion\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Centurion\Renderer\RendererAPI.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexReferenceArray.cpp" />
     <ClCompile Include="src\Centurion\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Centurion\Renderer\Renderer.cpp" />

@@ -32,7 +32,7 @@ namespace Centurion
 	{
 		std::string Name;
 		ShaderDataType Type;
-		uint32_t Offset;
+		uint64_t Offset;
 		uint32_t Size;
 		bool Normalized;
 

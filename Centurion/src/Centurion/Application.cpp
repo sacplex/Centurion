@@ -2,7 +2,7 @@
 #include "Application.h"
 #include "Log.h"
 
-#include <glad/glad.h>
+#include "Centurion/Renderer/Renderer.h"
 
 #include "Input.h"
 
@@ -11,27 +11,6 @@ namespace Centurion {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
-
-	/*static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-			case Centurion::ShaderDataType::Float:		return GL_FLOAT;
-			case Centurion::ShaderDataType::Float2:		return GL_FLOAT;
-			case Centurion::ShaderDataType::Float3:		return GL_FLOAT;
-			case Centurion::ShaderDataType::Float4:		return GL_FLOAT;
-			case Centurion::ShaderDataType::Mat3:		return GL_FLOAT;
-			case Centurion::ShaderDataType::Mat4:		return GL_FLOAT;
-			case Centurion::ShaderDataType::Int:		return GL_INT;
-			case Centurion::ShaderDataType::Int2:		return GL_INT;
-			case Centurion::ShaderDataType::Int3:		return GL_INT;
-			case Centurion::ShaderDataType::Int4:		return GL_INT;
-			case Centurion::ShaderDataType::Bool:		return GL_BOOL;
-		}
-
-		CTN_CORE_ASSERT(false, "Unknown ShaderDataType!");
-		return 0;
-	}*/
 
 	Application::Application()
 	{
@@ -42,9 +21,6 @@ namespace Centurion {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverLay(m_ImGuiLayer);
-
-		//glGenVertexArrays(1, &m_VertexArray);
-		//glBindVertexArray(m_VertexArray);
 
 		m_VertexReferenceArray.reset(VertexReferenceArray::Create());
 					
@@ -66,17 +42,6 @@ namespace Centurion {
 			
 			m_VertexBuffer->SetLayout(layout);
 		}
-
-		/*uint32_t index = 0;
-
-		
-		for (const auto& element : m_VertexBuffer->GetLayout())
-		{
-			// Structure the data
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, m_VertexBuffer->GetLayout().GetStride(), (const void*)element.Offset);
-			index++;
-		}*/
 
 		m_VertexReferenceArray->AddVertexBuffer(m_VertexBuffer);
 
@@ -162,12 +127,17 @@ namespace Centurion {
 
 		while (m_Running)
 		{
-			glClearColor(0, 0, 0, 0);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({ 0, 0, 0, 0 });
+			RenderCommand::Clear();
 
+			Renderer::BeginScene();
 			m_Shader->Bind();
-			m_VertexReferenceArray->Bind();
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr); // Draw the indices
+			Renderer::Submit(m_VertexReferenceArray);
+			Renderer::EndScene();
+			
+			
+			//m_VertexReferenceArray->Bind();
+			//glDrawElements(GL_TRIANGLES, m_VertexReferenceArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr); // Draw the indices
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

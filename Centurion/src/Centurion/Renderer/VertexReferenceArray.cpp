@@ -10,9 +10,9 @@ namespace Centurion
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None: CTN_CORE_ASSERT(false, "RendererAPI::None is current not supported!");
+		case RendererAPI::API::None: CTN_CORE_ASSERT(false, "RendererAPI::None is current not supported!");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RendererAPI::API::OpenGL:
 			return new OpenGLVertexReferenceArray();
 		}
 
