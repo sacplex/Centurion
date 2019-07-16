@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include <glm/glm.hpp>
+
 namespace Centurion
 {
 	class Shader
@@ -14,5 +16,7 @@ namespace Centurion
 
 		void Bind() const;
 		void Unbind() const;
+
+		void Shader::UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 	};
 }

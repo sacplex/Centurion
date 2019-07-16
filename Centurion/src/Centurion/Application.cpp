@@ -13,6 +13,7 @@ namespace Centurion {
 	Application* Application::s_Instance = nullptr;
 
 	Application::Application()
+		: m_Camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		s_Instance = this;
 
@@ -56,6 +57,8 @@ namespace Centurion {
 			layout(location = 0) in vec3 a_Position;
 			layout(location = 1) in vec4 a_Color;
 
+			uniform mat4 u_ViewProjection;
+
 			out vec3 v_Position;
 			out vec4 v_Color;
 
@@ -63,7 +66,7 @@ namespace Centurion {
 			{
 				v_Position = a_Position + 0.5;
 				v_Color = a_Color;
-				gl_Position = vec4(a_Position,1);
+				gl_Position = u_ViewProjection * vec4(a_Position,1);
 			}
 		)";
 
@@ -130,14 +133,12 @@ namespace Centurion {
 			RenderCommand::SetClearColor({ 0, 0, 0, 0 });
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
-			m_Shader->Bind();
-			Renderer::Submit(m_VertexReferenceArray);
+			m_Camera.SetPosition({ 0.5f, 0.5f, 0.0f });
+			m_Camera.SetRotation(45.0f);
+
+			Renderer::BeginScene(m_Camera);
+			Renderer::Submit(m_Shader, m_VertexReferenceArray);
 			Renderer::EndScene();
-			
-			
-			//m_VertexReferenceArray->Bind();
-			//glDrawElements(GL_TRIANGLES, m_VertexReferenceArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr); // Draw the indices
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();

@@ -5,14 +5,18 @@
 
 namespace Centurion
 {
-	void Renderer::BeginScene()
-	{
+	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData();
 
+	void Renderer::BeginScene(OrthographicCamera& camera)
+	{
+		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
-	void Renderer::Submit(const std::shared_ptr<VertexReferenceArray>& vertexReferenceArray)
+	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexReferenceArray>& vertexReferenceArray)
 	{
 		vertexReferenceArray->Bind();
+		shader->Bind();
+		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
 		RenderCommand::DrawIndexed(vertexReferenceArray);
 	}
 
