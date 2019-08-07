@@ -8,10 +8,22 @@
 #include "Centurion/Log.h"
 #include "Centurion/ImGui/ImGuiLayer.h"
 
-// ---Entry Point ------------------
+// ---Input ------------------------
 #include "Centurion/Input.h"
 #include "Centurion/KeyCodes.h"
 #include "Centurion/MouseButtonCodes.h"
+// ---------------------------------
+
+// ---Renderer ---------------------
+#include "Centurion/Renderer/Renderer.h"
+#include "Centurion/Renderer/RenderCommand.h"
+#include "Centurion/Renderer/Buffer.h"
+#include "Centurion/Renderer/Shader.h"
+#include "Centurion/Renderer/VertexReferenceArray.h"
+// ---------------------------------
+
+// ---Camera -----------------------
+#include "Centurion/Renderer/OrthographicCamera.h"
 // ---------------------------------
 
 // ---Entry Point ------------------

@@ -5,15 +5,11 @@
 #include "Events/Event.h"
 #include "ImGui/ImGuiLayer.h"
 #include "LayerStack.h"
-#include "Renderer/Shader.h"
-#include "Renderer/VertexReferenceArray.h"
-#include "Renderer/OrthographicCamera.h"
-#include "Renderer/Buffer.h"
 #include "Window.h"
 
 namespace Centurion {
 
-	class CENTURION_API Application
+	class Application
 	{
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
@@ -25,13 +21,6 @@ namespace Centurion {
 		LayerStack m_LayerStack;
 
 		static Application* s_Instance;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexReferenceArray> m_VertexReferenceArray;
-		std::shared_ptr<VertexBuffer> m_VertexBuffer;
-		std::shared_ptr<IndexBuffer> m_IndexBuffer;
-
-		OrthographicCamera m_Camera;
 	public:
 		Application();
 		virtual ~Application();
