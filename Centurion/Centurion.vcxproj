@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Centurion\Core\DeltaTime.h" />
     <ClInclude Include="src\Centurion\Renderer\Buffer.h" />
     <ClInclude Include="src\Centurion\Renderer\OrthographicCamera.h" />
@@ -541,6 +542,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Centurion\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Centurion\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Centurion\Renderer\RendererAPI.cpp" />

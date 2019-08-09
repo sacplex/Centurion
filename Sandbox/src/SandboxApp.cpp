@@ -1,13 +1,16 @@
 #include "Centurion.h"
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Centurion::Layer
 {
 private:
-	std::shared_ptr<Centurion::Shader> m_Shader;
+	std::shared_ptr<Centurion::Shader> m_FlatColorShader;
 	std::shared_ptr<Centurion::VertexReferenceArray> m_VertexReferenceArray;
 	std::shared_ptr<Centurion::VertexBuffer> m_VertexBuffer;
 	std::shared_ptr<Centurion::IndexBuffer> m_IndexBuffer;
@@ -20,6 +23,8 @@ private:
 
 	glm::vec3 m_TrianglePosition;
 	float m_TriangleMoveSpeed = 1.0f;
+
+	glm::vec4 m_TriangleColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_TrianglePosition(0.0f)
@@ -52,7 +57,7 @@ public:
 		m_IndexBuffer.reset(Centurion::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexReferenceArray->SetIndexBuffer(m_IndexBuffer);
 
-		std::string vertexSrc = R"(
+		std::string flatColorVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -72,7 +77,7 @@ public:
 			}
 		)";
 
-		std::string fragmentSrc = R"(
+		std::string flatColorFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 colour;
@@ -80,14 +85,15 @@ public:
 			in vec3 v_Position;
 			in vec4 v_Color;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{				
-				colour = vec4(v_Position, 1.0);
-				colour = v_Color;
+				colour = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_Shader.reset(new Centurion::Shader(vertexSrc, fragmentSrc));
+		m_FlatColorShader.reset(Centurion::Shader::Create(flatColorVertexSrc, flatColorFragmentSrc));
 	}
 
 	void OnUpdate(Centurion::DeltaTime deltaTime) override
@@ -150,13 +156,21 @@ public:
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_TrianglePosition);
 
-		Centurion::Renderer::Submit(m_Shader, m_VertexReferenceArray, transform);
+		glm::vec4 redColor(0.8f, 0.2f, 0.3f, 1.0f);
+		glm::vec4 greenColor(0.2f, 0.8f, 0.3f, 1.0f);
+
+		std::dynamic_pointer_cast<Centurion::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Centurion::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_TriangleColor);
+
+		Centurion::Renderer::Submit(m_FlatColorShader, m_VertexReferenceArray, transform);
 		Centurion::Renderer::EndScene();
 	}
 
 	virtual void OnImGuiRender()
 	{
-		
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Triangle Color", glm::value_ptr(m_TriangleColor));
+		ImGui::End();
 	}
 
 	void OnEvent(Centurion::Event& event) override
