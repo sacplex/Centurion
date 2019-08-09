@@ -12,11 +12,12 @@ namespace Centurion
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
-	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexReferenceArray>& vertexReferenceArray)
+	void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexReferenceArray>& vertexReferenceArray, const glm::mat4& transform)
 	{
 		vertexReferenceArray->Bind();
 		shader->Bind();
 		shader->UploadUniformMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->UploadUniformMat4("u_Transform", transform);
 		RenderCommand::DrawIndexed(vertexReferenceArray);
 	}
 

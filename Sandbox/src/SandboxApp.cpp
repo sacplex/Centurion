@@ -2,6 +2,8 @@
 
 #include "imgui/imgui.h"
 
+#include <glm/gtc/matrix_transform.hpp>
+
 class ExampleLayer : public Centurion::Layer
 {
 private:
@@ -12,12 +14,15 @@ private:
 
 	Centurion::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 1.0f;
+	float m_CameraMoveSpeed = 5.0f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 20.0f;
+	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_TrianglePosition;
+	float m_TriangleMoveSpeed = 1.0f;
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f), m_TrianglePosition(0.0f)
 	{
 		m_VertexReferenceArray.reset(Centurion::VertexReferenceArray::Create());
 
@@ -54,6 +59,7 @@ public:
 			layout(location = 1) in vec4 a_Color;
 
 			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
 
 			out vec3 v_Position;
 			out vec4 v_Color;
@@ -62,7 +68,7 @@ public:
 			{
 				v_Position = a_Position + 0.5;
 				v_Color = a_Color;
-				gl_Position = u_ViewProjection * vec4(a_Position,1);
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position,1);
 			}
 		)";
 
@@ -108,6 +114,26 @@ public:
 			m_CameraPosition.y += m_CameraMoveSpeed * deltaTime;
 		}
 
+		if (Centurion::Input::IsKeyPressed(CTN_KEY_J))
+		{
+			m_TrianglePosition.x -= m_TriangleMoveSpeed * deltaTime;
+		}
+
+		else if (Centurion::Input::IsKeyPressed(CTN_KEY_L))
+		{
+			m_TrianglePosition.x += m_TriangleMoveSpeed * deltaTime;
+		}
+
+		if (Centurion::Input::IsKeyPressed(CTN_KEY_I))
+		{
+			m_TrianglePosition.y += m_TriangleMoveSpeed * deltaTime;
+		}
+
+		else if (Centurion::Input::IsKeyPressed(CTN_KEY_K))
+		{
+			m_TrianglePosition.y -= m_TriangleMoveSpeed * deltaTime;
+		}
+
 		if (Centurion::Input::IsKeyPressed(CTN_KEY_A))
 			m_CameraRotation -= m_CameraRotationSpeed * deltaTime;
 
@@ -121,7 +147,10 @@ public:
 		m_Camera.SetRotation(m_CameraRotation);
 
 		Centurion::Renderer::BeginScene(m_Camera);
-		Centurion::Renderer::Submit(m_Shader, m_VertexReferenceArray);
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_TrianglePosition);
+
+		Centurion::Renderer::Submit(m_Shader, m_VertexReferenceArray, transform);
 		Centurion::Renderer::EndScene();
 	}
 
