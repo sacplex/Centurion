@@ -8,6 +8,10 @@
 #include "Centurion/Log.h"
 #include "Centurion/ImGui/ImGuiLayer.h"
 
+// ---Timing ------------------------
+#include "Centurion/Core/DeltaTime.h"
+// ---------------------------------
+
 // ---Input ------------------------
 #include "Centurion/Input.h"
 #include "Centurion/KeyCodes.h"

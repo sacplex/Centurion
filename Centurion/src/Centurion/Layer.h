@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Centurion/Core.h"
+#include "Centurion/Core/DeltaTime.h"
 #include "Centurion/Events/Event.h"
 
 
@@ -13,7 +14,7 @@ namespace Centurion {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(DeltaTime deltaTime) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

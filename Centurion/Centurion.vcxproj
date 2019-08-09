@@ -143,6 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Centurion\Core\DeltaTime.h" />
     <ClInclude Include="src\Centurion\Renderer\Buffer.h" />
     <ClInclude Include="src\Centurion\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Centurion\Renderer\RenderCommand.h" />

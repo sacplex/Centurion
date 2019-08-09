@@ -1203,6 +1203,7 @@
     <ClInclude Include="src\Centurion\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Centurion\Renderer\OrthographicCamera.h" />
+    <ClInclude Include="src\Centurion\Core\DeltaTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Centurion\Application.cpp">

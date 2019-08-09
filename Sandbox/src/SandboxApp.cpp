@@ -12,9 +12,9 @@ private:
 
 	Centurion::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 1.0f;
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 2.0f;
+	float m_CameraRotationSpeed = 20.0f;
 public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
@@ -84,33 +84,35 @@ public:
 		m_Shader.reset(new Centurion::Shader(vertexSrc, fragmentSrc));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Centurion::DeltaTime deltaTime) override
 	{
+		CTN_CLIENT_TRACE("Delta time: {0}s ({1}ms)", deltaTime.GetSeconds(), deltaTime.GetMilliseconds());
+
 		if (Centurion::Input::IsKeyPressed(CTN_KEY_LEFT))
 		{
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * deltaTime;
 		}
 
 		else if (Centurion::Input::IsKeyPressed(CTN_KEY_RIGHT))
 		{
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * deltaTime;
 		}
 
 		if (Centurion::Input::IsKeyPressed(CTN_KEY_UP))
 		{
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * deltaTime;
 		}
 
 		else if (Centurion::Input::IsKeyPressed(CTN_KEY_DOWN))
 		{
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * deltaTime;
 		}
 
 		if (Centurion::Input::IsKeyPressed(CTN_KEY_A))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * deltaTime;
 
 		if (Centurion::Input::IsKeyPressed(CTN_KEY_D))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * deltaTime;
 
 		Centurion::RenderCommand::SetClearColor({ 0, 0, 0, 0 });
 		Centurion::RenderCommand::Clear();
